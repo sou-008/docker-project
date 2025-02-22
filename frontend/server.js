@@ -24,13 +24,16 @@ app.get('/', (req, res) => {
 app.post('/submit-form', (req, res) => {
     const formData = req.body;
 
+    // Update the API URL to use the EC2 public IP
+    const apiUrl = "http://51.20.126.151:5000/submit";  // Replace with your actual EC2 public IP
+
     // Send data to Flask backend
-    axios.post('http://backend:5000/submit', formData)
+    axios.post(apiUrl, formData)
         .then(response => {
-            res.send('Form submitted successfully: ' + response.data);
+            res.send('Form submitted successfully: ' + response.data.message);  // Adjust according to Flask's response
         })
         .catch(error => {
-            console.error(error);
+            console.error('Error:', error.response ? error.response.data : error.message);
             res.send('Error submitting form');
         });
 });

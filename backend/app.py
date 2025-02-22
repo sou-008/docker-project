@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import the CORS package
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/submit', methods=['POST'])
 def submit_form():
-    data = request.form
+    # Handling JSON data (instead of form data)
+    data = request.json
     name = data.get('name')
     email = data.get('email')
 
