@@ -25,7 +25,8 @@ app.post('/submit-form', (req, res) => {
     const formData = req.body;
 
     // Update the API URL to use the EC2 public IP
-    const apiUrl = "http://localhost:5000/submit";  // Replace with your actual EC2 public IP
+    //const apiUrl = "http://localhost:5000/submit";  // Replace with your actual EC2 public IP
+    const apiUrl = "http://flask-express-alb-1514407750.eu-north-1.elb.amazonaws.com/submit";
 
     // Send data to Flask backend
     axios.post(apiUrl, formData)
